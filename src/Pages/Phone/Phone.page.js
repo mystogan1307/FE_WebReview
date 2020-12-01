@@ -11,6 +11,7 @@ import { appConfig } from "../../configs/app.config";
 import { getProductById } from "../../actions/phone.action";
 import Comment from "../../components/common/comment";
 import Modal from "../../components/modals/modal.info";
+import Modal2 from "../../components/modals/modal.detail";
 import Chart from "../../components/common/chart";
 import { getCommentList } from "../../actions/comment.action";
 
@@ -26,6 +27,7 @@ class Phone extends Component {
             listSore: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             nodeScore: 0,
             isOpenModal: false,
+            isOpenModalDetail: false,
             doughnut: {
                 labels: [
                     'Số điểm',
@@ -63,6 +65,12 @@ class Phone extends Component {
     toggleModalInfo = () => {
         this.setState({
             isOpenModal: !this.state.isOpenModal
+        })
+    }
+    toggleModalDetail = () => {
+        this.setState({
+            isOpenModalDetail: !this.state.isOpenModalDetail
+
         })
     }
 
@@ -188,7 +196,7 @@ class Phone extends Component {
     }
 
     render() {
-        const { isOpenModal, comment, params, isOpenDropdownAnalysis, isOpenDropdownSort, indexPagination, limit_comments } = this.state;
+        const { isOpenModal,isOpenModalDetail, comment, params, isOpenDropdownAnalysis, isOpenDropdownSort, indexPagination, limit_comments } = this.state;
         const { phoneInfo, commentData } = this.props;
         const { commentList, commentTotal } = commentData;
         const { phone } = phoneInfo;
@@ -203,6 +211,16 @@ class Phone extends Component {
                         name={phone.product.name}
                         productDetail={phone.productDetail}
                         toggle={this.toggleModalInfo}
+                    />
+                }
+
+{
+                    phone &&
+                    <Modal2
+                        isOpen={isOpenModalDetail}
+                        name={phone.product.name}
+                        productDetail={phone.productDetail}
+                        toggle={this.toggleModalDetail}
                     />
                 }
 
@@ -223,9 +241,7 @@ class Phone extends Component {
                 <br></br>
                 <Row>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0 ">
-                        <Button color="secondary" className="btn-pill">
-                            <i className="fa fa-plus-circle"></i>&nbsp;Muốn mua
-                        </Button>
+                        <Button color="secondary" className="btn-pill" onClick={this.toggleModalDetail}>Xem đánh giá chi tiết </Button>
                     </Col>
 
                     <Col xs="12" sm="8">
@@ -252,7 +268,7 @@ class Phone extends Component {
                                     </div>
                                 </Label> */}
                                 {/* onClick={this.checkLogin} */}
-                                <Input value={comment.content} onChange={e => this.onChange(e)} onClick={this.checkLogin}  style={{ height: "100px", maxHeight: "250px", minHeight: "56px" }} type="textarea" name="text" id="exampleText" />
+                                <Input value={comment.content} onChange={e => this.onChange(e)}   style={{ height: "100px", maxHeight: "250px", minHeight: "56px" }} type="textarea" name="text" id="exampleText" />
                                 <Button className="btn-send-comment" outline color="dark">Gửi</Button>
                             </FormGroup>
                         </Form>
@@ -310,13 +326,14 @@ class Phone extends Component {
 
                                 </Table>
                                 <Button className="mb-2" outline color="primary" size="lg" onClick={this.toggleModalInfo} block>Xem cấu hình chi tiết</Button>
+                            
                             </div>
                         }
                     </Col>
 
                     <Col xs="12" sm="8">
                         <div className="d-flex mb-2">
-                            <h4>Đánh giá khác</h4>
+                            <h4>Nhận xét khác</h4>
                             <div className="ml-auto d-flex">
 
                                 <Dropdown isOpen={isOpenDropdownSort} toggle={this.toggleDropdownSort}>

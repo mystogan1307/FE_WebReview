@@ -81,11 +81,11 @@ class Dashboard extends Component {
         >
           <Row>
             {item.data.map((val, index) => 
-              <Col key={val._id} className="" xs="12" sm="6" lg="3">
+              <Col key={val._id} className="phone_item" xs="12" sm="6" lg="3">
                 <NavLink to={`/dien-thoai/${val._id}`}>
                     <img className="image-hover" alt="" height="250" width="auto" src={`${appConfig.apiProductImage}/${val.image ? val.image : 'default-phone.png'}`} ></img>
+                    <h6 className="pt-2">{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>
                 </NavLink>
-                <h6 className="pt-2">{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>
                 <span className="text-danger"><FormattedNumber value={val.price}/> đ</span>
                 <p>{val.commentAmount} bình luận</p>
               </Col>
@@ -108,11 +108,11 @@ class Dashboard extends Component {
         >
           <Row>
             {item.data.map((val, index) => 
-              <Col key={val._id} className="" xs="12" sm="6" lg="3">
+              <Col key={val._id} className="phone_item" xs="12" sm="6" lg="3">
                 <NavLink to={`/dien-thoai/${val._id}`}>
                     <img className="image-hover" alt="" height="250" width="auto" src={`${appConfig.apiProductImage}/${val.image ? val.image : 'default-phone.png'}`} ></img>
+                    <h6 className="pt-2">{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>
                 </NavLink>
-                <h6 className="pt-2">{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>
                 <span className="text-danger"><FormattedNumber value={val.price}/> đ</span>
                 <p>{val.commentAmount} bình luận</p>
               </Col>

@@ -690,11 +690,11 @@ class PhoneSettings extends Component {
 
                 <Row>
                     {phoneList && phoneList.map((val, idx) =>
-                        <Col key={idx} className="mb-4" xs="12" sm="6" lg="3">
+                        <Col key={idx} className="mb-4 phone_item" xs="12" sm="6" lg="3">
                             <img className="image-hover" onClick={e => this.onClickPhone(val._id)} alt="" height="250" width="auto" src={`${appConfig.apiProductImage}/${val.image ? val.image : 'default-phone.png'}`} ></img>
-                            <h6 className="pt-2">{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>
+                            <h6 className="pt-2 phone_setting_item" onClick={e => this.onClickPhone(val._id)}>{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>
                             <span><FormattedNumber value={val.price} /></span>
-                            <Button onClick={e => this.onClickDeletePhone(val._id)} block color="danger">Xóa</Button>
+                            <Button className="phone_item__button" onClick={e => this.onClickDeletePhone(val._id)} block color="primary">Xóa</Button>
                         </Col>
                     )}
                 </Row>

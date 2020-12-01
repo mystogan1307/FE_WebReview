@@ -186,7 +186,7 @@ function ModalInfo(props) {
         </div>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" onClick={toggle} >Hủy</Button>
+        <Button color="secondary" onClick={toggle} >Đóng</Button>
       </ModalFooter>
     </Modal>
   )

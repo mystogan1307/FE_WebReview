@@ -58,9 +58,9 @@ class PhonePage extends Component {
 
     onClickSelectLabel = (labelId, labelName) => {
         const { params } = this.state;
-        params.labelId = labelId;
+        params.label = labelId;
         params.labelName = labelName;
-        params.skip = 0
+        params.skip = 0;
         this.setState({
             params,
             indexPagination: 0
@@ -158,7 +158,7 @@ class PhonePage extends Component {
 
                 <Row>
                     {phoneList && phoneList.map((val, idx) =>
-                        <Col key={idx} className="mb-4" xs="12" sm="6" lg="3">
+                        <Col key={idx} className="mb-4 phone_item" xs="12" sm="6" lg="3">
                             <NavLink to={`/dien-thoai/${val._id}`}>
                                 <img className="image-hover" alt="" height="250" width="auto" src={`${appConfig.apiProductImage}/${val.image ? val.image : 'default-phone.png'}`} ></img>
                                 <h6 className="pt-2">{val.name.length > 30 ? val.name.slice(0, 28) + "..." : val.name}</h6>

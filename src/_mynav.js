@@ -31,7 +31,7 @@ export const navAdmin = {
         icon: "cui-phone"
       },
       {
-        name: "Nhãn hiệu điện thoại",
+        name: "Hãng điện thoại",
         url: "/nhan-hieu",
         icon: "cui-info"
       },

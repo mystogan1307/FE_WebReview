@@ -38,18 +38,18 @@ class DefaultHeader extends Component {
         />
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
-        <Nav className="d-md-down-none" navbar>
+        <Nav className="d-md-down-none menu" navbar >
           <NavItem className="px-3">
             <NavLink to="/" className="nav-link" >Trang chủ</NavLink>
           </NavItem>
           <NavItem className="px-3">
             <Link to="/dien-thoai" className="nav-link">Điện thoại</Link>
           </NavItem>
-          {
+          {/* {
             user && user.role && user.role.index === 1 && 
             <React.Fragment>
               <NavItem className="px-3">
-                <NavLink to="/nhan-hieu" className="nav-link">Nhãn hiệu điện thoại</NavLink>
+                <NavLink to="/nhan-hieu" className="nav-link">Hãng điện thoại</NavLink>
               </NavItem>
               <NavItem className="px-3">
                 <NavLink to="/quanlydienthoai" className="nav-link">Quản lý điện thoại</NavLink>
@@ -58,7 +58,7 @@ class DefaultHeader extends Component {
                 <NavLink to="/nguoi-dung" className="nav-link">Quản lý người dùng</NavLink>
               </NavItem>
             </React.Fragment>
-          }
+          } */}
         </Nav>
         <Nav className="ml-auto" navbar>
           {/* <NavItem className="d-md-down-none">
@@ -92,7 +92,6 @@ class DefaultHeader extends Component {
               <DropdownItem onClick={profile} ><i className="fa fa-user"></i> Thông tin</DropdownItem>
               <DropdownItem onClick={changePassword}><i className="fa fa-key"></i> Đổi mật khẩu</DropdownItem>
               
-              <DropdownItem divider />
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
             </DropdownMenu>
             
