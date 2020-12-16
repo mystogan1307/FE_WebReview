@@ -242,6 +242,7 @@ class PhoneLabel extends Component {
                                     <Label for="name">Hãng sản xuất</Label>
                                     <Input type="text" name="name" id="name"
                                         value={labelItem.name || ""} onChange={this.onHandleChange}
+                                        required
                                     />
                                 </Col>
                             </Row>

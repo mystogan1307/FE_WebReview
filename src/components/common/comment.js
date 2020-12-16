@@ -8,7 +8,7 @@ class Comment extends Component {
     render() {
         const { user, comment} = this.props;
         return (
-            <div className="mb-4">
+            <div className={`${this.props.className} mb-4`}>
                 <div className="d-flex flex-rơw">
                     <img alt="" className="img-avatar mr-2" style={{borderRadius: "50%", height: "50px", width: "50px"}} src={user.avatar ? `${appConfig.apiAvatar}/${user.avatar}` : `${appConfig.defaultAvatar}`} />
                     <div className="">
@@ -25,7 +25,7 @@ class Comment extends Component {
                 <div>
                     {comment.content}
                 </div>
-                <span className="thumbs-up">
+                {/* <span className="thumbs-up">
                     <i className="fa fa-thumbs-up fa-sm"></i>
                     <span className="count">{comment.like}</span>
                 </span>
@@ -33,7 +33,7 @@ class Comment extends Component {
                 <span className="thumbs-down">
                     <i className="fa fa-thumbs-down"></i>
                     <span className="count">{comment.dislike}</span>
-                </span>
+                </span> */}
             </div>
         );
     }

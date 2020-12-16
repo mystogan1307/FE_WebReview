@@ -82,7 +82,7 @@ class Login extends Component {
                           <Button type="submit" color="primary" className="px-4">Đăng nhập</Button>
                         </Col>
                         <Col xs="6" className="text-right">
-                          <Button type="button" color="link" className="px-0">Quên mật khẩu?</Button>
+                          {/* <Button type="button" color="link" className="px-0">Quên mật khẩu?</Button> */}
                         </Col>
                       </Row>
                     </Form>

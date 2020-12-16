@@ -1,6 +1,7 @@
 import requestHelper from "../helpers/request.helper";
 import { uploadAvatar } from "../helpers/upload.file.helper";
 import { appConfig } from "../configs/app.config";
+import { toast } from "react-toastify";
 
 export default class Auth{
     static Login(email, password){
@@ -12,7 +13,11 @@ export default class Auth{
     }
 
     static updateProfile(profile){
-        return requestHelper.put(`${appConfig.apiUrl}/profile`, profile);
+        return requestHelper.put(`${appConfig.apiUrl}/profile`, profile).then(res=> 
+            toast.success("Cập nhật thông tin thành công", {
+                position: toast.POSITION.TOP_RIGHT
+            })
+            );
     }
 
     static updateAvatar(avatar){

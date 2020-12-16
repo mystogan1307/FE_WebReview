@@ -38,3 +38,21 @@
 .menu{
     padding: 10px 0 !important;
 }
+.min-width-modal-detail{
+    min-width: 700px;
+}
+
+.blur {
+    opacity: 0.6;
+}
+
+@media (min-width: 576px)
+{
+    .modal-dialog {
+        max-width: 600px;
+    }
+}
+
+.color-white{
+    color: white !important;
+}

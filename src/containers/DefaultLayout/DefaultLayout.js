@@ -35,11 +35,15 @@ class DefaultLayout extends Component {
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   signOut(e) {
-    e.preventDefault()
+     e.preventDefault()
+    console.log(2);
     // this.props.history.push('/login')
     // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
-    cookie.remove('token')
-    this.props.getProfileUser();
+    // cookie.remove('token', { path: '/' }) ;
+    cookie.remove('token') ;
+    //this.props.getProfileUser();
+    window.location.reload();
+    
   }
 
   componentDidMount() {
@@ -68,7 +72,9 @@ class DefaultLayout extends Component {
           </Suspense>
         </AppHeader>
         <div className="app-body">
-          <AppSidebar fixed display="lg">
+         {
+           (user && user.role.index === 1)?
+            <AppSidebar fixed display="lg">
             <AppSidebarHeader />
             <AppSidebarForm />
             <Suspense>
@@ -76,8 +82,9 @@ class DefaultLayout extends Component {
             </Suspense>
             <AppSidebarFooter />
             <AppSidebarMinimizer />
-          </AppSidebar>
-          <main className="main">
+          </AppSidebar>:null
+         }
+          <main className="main" style={{ marginLeft: (user && user.role.index ===1)? "200px":"0"}}>
             {/* <AppBreadcrumb appRoutes={routes} router={router}/> */}
             <Container fluid>
               <Suspense fallback={this.loading()}>

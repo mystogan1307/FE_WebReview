@@ -5,7 +5,6 @@ import {
 } from "reactstrap";
 import {Redirect} from "react-router-dom";
 import { connect } from "react-redux";
-
 import { appConfig } from "../../configs/app.config";
 import { getProfileUser } from "../../actions/auth.action";
 import authApi from "../../api/auth.api";
@@ -114,7 +113,7 @@ class Profile extends Component {
 
                                     <Col sm="6">
                                         <FormGroup>
-                                            <Label htmlFor="username">username</Label>
+                                            <Label htmlFor="username">Tên hiển thị</Label>
                                             <Input type="text" name="username" id="username" value={profile.username ? profile.username : ""} onChange={this.onChange} />
                                         </FormGroup>
                                         <FormGroup>

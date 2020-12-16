@@ -14,6 +14,7 @@ import Modal from "../../components/modals/modal.info";
 import Modal2 from "../../components/modals/modal.detail";
 import Chart from "../../components/common/chart";
 import { getCommentList } from "../../actions/comment.action";
+import { FormattedNumber } from "react-intl";
 
 class Phone extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class Phone extends Component {
                 // score: 0,
                 content: ""
             },
+            loading : false,
             listSore: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             nodeScore: 0,
             isOpenModal: false,
@@ -91,6 +93,7 @@ class Phone extends Component {
 
     onSubmitComment = async (e) => {
         const { comment } = this.state;
+        
         e.preventDefault();
         if (this.props.user.msg) {
             return this.props.history.push("/login", this.props.match.url);
@@ -102,15 +105,19 @@ class Phone extends Component {
         //     return toast.error("Bạn phải chọn điểm dánh giá");
         // }
         else {
+            this.setState({loading : true})
             let kq = await CommentApi.SentimentAnalysis(comment.content);
             if (kq) {
                 comment.analysis = kq[0]
                 await CommentApi.AddComment(comment);
+                await this.props.getProductById(this.props.match.params.id);
                 await this.props.getCommentByProductId(this.state.params);
+
                 comment.content = "";
                 // comment.score = 0;
                 this.setState({
-                    comment
+                    comment,
+                    loading : false
                 })
             }
         }
@@ -201,7 +208,7 @@ class Phone extends Component {
         const { commentList, commentTotal } = commentData;
         const { phone } = phoneInfo;
         let currentList = commentList ? commentList.length : 0;
-        console.log(commentTotal, currentList)
+        console.log(commentTotal, currentList,comment)
         return (
             <div >
                 {
@@ -228,8 +235,15 @@ class Phone extends Component {
                 <h3 className="border-bottom d-flex align-items-center pt-2">{phone ? phone.product.name : ""}</h3>
                 <Row>
                     <Col xs="12" sm="4">
-                        <img alt="" height="250" width="auto" src={phone ? `${appConfig.apiProductImage}/${phone.product.image}` : ""} ></img>
-                    </Col>
+                    <Row>
+                    <img alt="" height="250" width="auto" style={{margin :"auto"}} src={phone ? `${appConfig.apiProductImage}/${phone.product.image}` : ""} ></img>
+
+                    </Row>
+
+                        <Row>
+                        <span className="text-danger" style={{margin : "auto", fontWeight : "bold", fontSize: " 30px"}}><FormattedNumber value={phone ?phone.product.price : ""}/> đ</span>
+                        </Row>
+                        </Col>
 
                     <Col xs="12" sm="4">
                         {/* <Doughnut data={doughnut} options={options} /> */}
@@ -241,7 +255,10 @@ class Phone extends Component {
                 <br></br>
                 <Row>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0 ">
-                        <Button color="secondary" className="btn-pill" onClick={this.toggleModalDetail}>Xem đánh giá chi tiết </Button>
+                        <Row>
+                        <Button color="secondary" className="btn-pill" onClick={this.toggleModalDetail} style={{margin : "auto"}}>Xem đánh giá chi tiết </Button>
+
+                        </Row>
                     </Col>
 
                     <Col xs="12" sm="8">
@@ -359,6 +376,9 @@ class Phone extends Component {
                                 </Dropdown>
                             </div>
                         </div>
+                        {
+                            this.state.loading && <Comment className = "blur" user={this.props.user} comment={comment} sizeScore="large"></Comment>
+                        }
                         {commentList && commentList.map((val, idx) => {
                             return <Comment key={idx} user={val.userId} comment={val} sizeScore="large"></Comment>
                         })}

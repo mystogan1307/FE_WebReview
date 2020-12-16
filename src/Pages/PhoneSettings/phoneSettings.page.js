@@ -6,7 +6,8 @@ import {
     Dropdown, DropdownItem, DropdownMenu, DropdownToggle,
     Pagination, PaginationItem, PaginationLink
 } from 'reactstrap';
-
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { connect } from "react-redux";
 import { FormattedNumber } from "react-intl";
 import { Redirect } from "react-router-dom";
@@ -33,7 +34,8 @@ class PhoneSettings extends Component {
                 skip: 0
             },
             indexPagination: 0,
-            limit_products: 8
+            limit_products: 8,
+            
         }
     }
 
@@ -89,6 +91,7 @@ class PhoneSettings extends Component {
     handlePhoneData = (phoneItem) => {
         let phone = {};
         phone.name = phoneItem.name ? phoneItem.name.trim() : phoneItem.name;
+        phone.review = phoneItem.reivew ? phoneItem.review.trim() : phoneItem.review;
         phone.label = phoneItem.label;
         phone.price = phoneItem.price;
         phone.screen = {
@@ -188,11 +191,14 @@ class PhoneSettings extends Component {
         try {
             const { phoneItem } = this.state;
             let phoneResult = await phoneApi.getProductById(id);
+            
             phoneItem.id = id;
             phoneItem.name = phoneResult.product.name;
             phoneItem.label = phoneResult.product.label;
             phoneItem.price = phoneResult.product.price;
             phoneItem.image = phoneResult.product.image;
+            phoneItem.review = phoneResult.productDetail.review;
+            
             const { productDetail } = phoneResult;
             if (productDetail.screen) {
                 phoneItem.screenTechnology = productDetail.screen.screenTechnology;
@@ -339,6 +345,7 @@ class PhoneSettings extends Component {
         const { data, user, label } = this.props;
         const { phoneList, phoneTotal } = data;
         const currentList = phoneList ? phoneList.length : 0;
+        console.log(phoneItem);
         if (user && user.role && user.role.index !== 1){
             return <Redirect from="/" to="/" />
         }
@@ -367,6 +374,7 @@ class PhoneSettings extends Component {
                                     <Label for="name">Tên sản phẩm</Label>
                                     <Input type="text" name="name" id="name"
                                         value={phoneItem.name || ""} onChange={this.onHandleChange}
+                                        required
                                     />
                                 </Col>
                                 <Col>
@@ -395,6 +403,7 @@ class PhoneSettings extends Component {
                                     <Label for="price">Giá</Label>
                                     <Input type="number" name="price" id="price"
                                         value={phoneItem.price || ""} onChange={this.onHandleChange}
+                                        required
                                     />
                                 </Col>
                             </Row>
@@ -642,6 +651,44 @@ class PhoneSettings extends Component {
                                         value={phoneItem.capacity || ""} onChange={this.onHandleChange}
                                     />
                                 </Col>
+                            </Row>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Row>
+                                <Col>
+                                    <Label for="type">Đánh giá chi tiết</Label>
+                                    {/* <textarea 
+                                        placeholder="Đánh giá chi tiết" 
+                                        rows="7" style={{width: "100%"}}
+                                        name="review"
+                                        value={phoneItem.review || ""} onChange={this.onHandleChange}
+                                    /> */}
+                                      <CKEditor
+                    editor={ ClassicEditor }
+                    data={phoneItem.review || ""}
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        let phoneItem = Object.assign({}, this.state.phoneItem);
+                        phoneItem.review = data;
+                        this.setState({
+                            phoneItem
+                        })
+                        console.log( { event, editor, data } );
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
+                                </Col>
+                               
                             </Row>
                         </FormGroup>
                         <div className="text-center border-top pt-2">

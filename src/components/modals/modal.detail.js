@@ -28,19 +28,13 @@ function ModalDetail(props) {
   const wrapperRef = useRef();
   useOutsideAlerter(wrapperRef, toggle);
   return (
-    <Modal isOpen={isOpen}   >
+    <Modal isOpen={isOpen}  className="min-width-modal-detail" >
       <ModalHeader>Đánh giá chi tiết {name}</ModalHeader>
       <ModalBody>
         <div >
-            <p>- {productDetail.review.content}</p>
-          <p>- Thông tin chi tiết</p>
-          <p>- Thông tin chi tiết</p>
-          <p>- Thông tin chi tiết</p>
-          <p>- Thông tin chi tiết</p>
-          <p>- Thông tin chi tiết</p>
-          <p>- Thông tin chi tiết</p>
-
-          
+            <p style={{whiteSpace: "pre-line"}}>
+            <div dangerouslySetInnerHTML={{__html: productDetail.review}} />
+             </p>
         </div>
       </ModalBody>
       <ModalFooter>

@@ -6,7 +6,7 @@ import {  UncontrolledDropdown, DropdownItem, DropdownMenu, DropdownToggle, Nav,
 // import PropTypes from 'prop-types';
 
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
-import logo from '../../assets/img/brand/Icons8_flat_multiple_smartphones.svg'
+import logo from '../../assets/img/brand/phonelogo.png'
 import sygnet from '../../assets/img/brand/sygnet.svg'
 import {appConfig} from "../../configs/app.config"
 
@@ -36,14 +36,14 @@ class DefaultHeader extends Component {
           // full={{ src: logo, width: 89, height: 25, alt: 'CoreUI Logo' }}
           // minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
         />
-        <AppSidebarToggler className="d-md-down-none" display="lg" />
+        {/* <AppSidebarToggler className="d-md-down-none" display="lg" /> */}
 
         <Nav className="d-md-down-none menu" navbar >
           <NavItem className="px-3">
-            <NavLink to="/" className="nav-link" >Trang chủ</NavLink>
+            <NavLink to="/" className="nav-link color-white" >Trang chủ</NavLink>
           </NavItem>
           <NavItem className="px-3">
-            <Link to="/dien-thoai" className="nav-link">Điện thoại</Link>
+            <Link to="/dien-thoai" className="nav-link color-white" >Điện thoại</Link>
           </NavItem>
           {/* {
             user && user.role && user.role.index === 1 && 
@@ -89,7 +89,7 @@ class DefaultHeader extends Component {
             </DropdownToggle>
             
             <DropdownMenu right>
-              <DropdownItem onClick={profile} ><i className="fa fa-user"></i> Thông tin</DropdownItem>
+              <DropdownItem onClick={profile} ><i className="fa fa-user"></i> Thông tin cá nhân</DropdownItem>
               <DropdownItem onClick={changePassword}><i className="fa fa-key"></i> Đổi mật khẩu</DropdownItem>
               
               <DropdownItem onClick={e => this.props.onLogout(e)}><i className="fa fa-lock"></i> Logout</DropdownItem>
