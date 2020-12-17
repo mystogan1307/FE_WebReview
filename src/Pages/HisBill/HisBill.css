@@ -1,0 +1,23 @@
+.his-bill>p{
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.his-bill>table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.his-bill>table td,th{
+  border: 1px solid black;
+  text-align: center;
+}
+
+.his-bill ol{
+  list-style: disc;
+}
+.his-bill li{
+  text-align: left;
+  padding-left: 10px;
+}

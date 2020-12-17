@@ -53,10 +53,11 @@ class DefaultHeader extends Component {
               Điện thoại
             </Link>
           </NavItem>
-          {user && user._id ? (
+
+          {user && user._id && user.role.index === 0 ? (
             <NavItem className="px-3">
-              <Link to={`/cart/${user._id}`} className="nav-link color-white">
-                Giỏ hàng
+              <Link to={`/his/${user._id}`} className="nav-link color-white">
+                Đơn đã đặt
               </Link>
             </NavItem>
           ) : null}
@@ -77,6 +78,17 @@ class DefaultHeader extends Component {
           } */}
         </Nav>
         <Nav className="ml-auto" navbar>
+          {user && user._id && user.role.index === 0 ? (
+            <NavItem className="px-3">
+              <Link to={`/cart/${user._id}`} className="nav-link color-white">
+                Giỏ hàng
+                <i
+                  style={{ marginLeft: "5px" }}
+                  class="fa fa-shopping-cart"
+                ></i>
+              </Link>
+            </NavItem>
+          ) : null}
           {/* <NavItem className="d-md-down-none">
             <NavLink to="#" className="nav-link"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
           </NavItem>

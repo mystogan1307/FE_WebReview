@@ -44,7 +44,7 @@ const CI = ({ product, deleteProduct, updateCart }) => {
             className="text-danger"
             style={{
               fontSize: " 14px",
-              textAlign: "right",
+              textAlign: "left",
             }}
           >
             <FormattedNumber value={p ? p.product.price : 0} /> đ

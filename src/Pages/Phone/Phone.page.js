@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
+
 import {
   Row,
   Col,
@@ -74,14 +75,12 @@ class Phone extends Component {
 
   toggleModalInfo = () => {
     this.setState({
-      isOpenModalDetail: false,
-      isOpenModal: !this.state.isOpenModal,
+      isOpenModal: false,
     });
   };
   toggleModalDetail = () => {
     this.setState({
-      isOpenModalDetail: !this.state.isOpenModalDetail,
-      isOpenModal: false,
+      isOpenModalDetail: false,
     });
   };
 
@@ -236,6 +235,12 @@ class Phone extends Component {
           },
         ],
       });
+      console.log(
+        this.props.match.params.id,
+        phoneInfo.phone.product.name,
+        phoneInfo.phone.product.price,
+        1
+      );
       toast.success("Đã thêm vào giỏ hàng.");
     }
   };
@@ -467,7 +472,7 @@ class Phone extends Component {
                   outline
                   color="primary"
                   size="lg"
-                  onClick={this.toggleModalInfo}
+                  onClick={() => this.setState({ isOpenModal: true })}
                   block
                 >
                   Xem cấu hình chi tiết
@@ -478,7 +483,7 @@ class Phone extends Component {
                   color="primary"
                   size="lg"
                   block
-                  onClick={this.toggleModalDetail}
+                  onClick={() => this.setState({ isOpenModalDetail: true })}
                 >
                   Xem đánh giá chi tiết{" "}
                 </Button>

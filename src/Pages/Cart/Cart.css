@@ -89,3 +89,9 @@
   min-width: 70%;
   padding: 5px;
 }
+
+.disable-a{
+  cursor: initial;
+  background-color: #EEEEEE !important;
+  pointer-events: none;
+}

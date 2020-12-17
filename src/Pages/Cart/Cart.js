@@ -7,6 +7,7 @@ import Axios from "axios";
 import { connect } from "react-redux";
 import { FormattedNumber } from "react-intl";
 import { appConfig } from "../../configs/app.config";
+import { toast } from "react-toastify";
 
 const Cart = ({ match: { params }, user, ...otherProps }) => {
   const [cart, setCart] = useState(null);
@@ -84,6 +85,26 @@ const Cart = ({ match: { params }, user, ...otherProps }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+    console.log(otherProps);
+
+    console.log({
+      userId: params.id,
+      name: name,
+      phone: phoneNumber,
+      address: address,
+      email: email,
+    });
+
+    Axios.post(`${appConfig.apiUrl}/bill/add`, {
+      userId: params.id,
+      name: name,
+      phone: phoneNumber,
+      address: address,
+      email: email,
+    });
+
+    toast.success("Đặt hàng thành công.");
+    otherProps.history.push("/");
   };
 
   return (
@@ -158,7 +179,9 @@ const Cart = ({ match: { params }, user, ...otherProps }) => {
             </div>
           </div>
           <div className="cart__bottom">
-            <button>Đặt hàng</button>
+            <button className={cart && cart.products.length ? "" : "disable-a"}>
+              Đặt hàng
+            </button>
           </div>
         </form>
       </div>

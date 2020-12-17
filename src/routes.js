@@ -13,6 +13,8 @@ const PhoneLabel = React.lazy(() =>
 );
 const User = React.lazy(() => import("./Pages/Users/User.page"));
 const Cart = React.lazy(() => import("./Pages/Cart/Cart"));
+const His = React.lazy(() => import("./Pages/HisBill/HisBill"));
+const BillSetting = React.lazy(() => import("./Pages/BillSetting/BillSetting"));
 
 const routes = [
   { path: "/", exact: true, name: "trangchu", component: Home },
@@ -22,6 +24,18 @@ const routes = [
     exact: true,
     name: "dien-thoai",
     component: PhonePage,
+  },
+  {
+    path: "/his/:id",
+    exact: true,
+    name: "his",
+    component: His,
+  },
+  {
+    path: "/don-hang",
+    exact: true,
+    name: "don-hang",
+    component: BillSetting,
   },
   {
     path: "/dien-thoai/:id",
