@@ -37,10 +37,10 @@ class DefaultLayout extends Component {
 
   signOut(e) {
     e.preventDefault();
-    cookie.remove("token");
+    // cookie.remove("token");
     this.props.history.push("");
-    // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
-    // cookie.remove('token', { path: '/' }) ;
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; ";
+    cookie.remove("token", { path: "/" });
     //this.props.getProfileUser();
     window.location.reload();
   }
