@@ -13,6 +13,7 @@ import { Redirect } from "react-router-dom";
 import ModalConfirm from "../../components/modals/modal.comfirm";
 import { getUserList } from "../../actions/user.action";
 import UserApi from "../../api/user.api";
+import "./UserPage.scss"
 
 class User extends Component {
     constructor(props) {
@@ -133,7 +134,7 @@ class User extends Component {
             return <Redirect from="/" to="/" />
         }
         return (
-            <div>
+            <div className="user-page">
                 <ModalConfirm
                     title={title}
                     isShowModal={isShowModalConfirm}

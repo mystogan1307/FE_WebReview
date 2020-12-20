@@ -14,6 +14,7 @@ import Modal from "../../components/modals/modal";
 import ModalConfirm from "../../components/modals/modal.comfirm";
 import { getLabelList } from "../../actions/label.action";
 import LabelApi from "../../api/label.api";
+import "./PhoneLabel.scss"
 
 class PhoneLabel extends Component {
     constructor(props) {
@@ -30,7 +31,8 @@ class PhoneLabel extends Component {
                 name: ""
             },
             indexPagination: 0,
-            limit_labels: 5
+            limit_labels: 5,
+            currentPage:1,
         }
     }
 
@@ -171,7 +173,11 @@ class PhoneLabel extends Component {
         }, () => this.props.getLabelList(this.state.params));
     }
 
-    onClickPagination = (number, index) => {
+    onClickPagination = async (number, index) => {
+        console.log('222',number,index);
+        // this.setState({
+        //     currentPage:number
+        // })
         const {params, indexPagination, limit_labels} = this.state;
         const {labelTotal} = this.props.data;
         let newIndexPagination = indexPagination;
@@ -183,12 +189,29 @@ class PhoneLabel extends Component {
         else if (index === "+" && params.skip + limit_labels < labelTotal){
             newIndexPagination = indexPagination + 1;
         }
-        this.setState({
+        //  this.setState({
+        //     params,
+        //     indexPagination: newIndexPagination,
+        // },() => {
+        //     this.props.getLabelList(this.state.params);
+        // })
+        // this.setState({
+        //     currentPage:number
+        // })
+         this.setState({
             params,
-            indexPagination: newIndexPagination
-        },() => {
-            this.props.getLabelList(this.state.params);
+            indexPagination: newIndexPagination,
         })
+        await this.props.getLabelList(this.state.params);
+        this.setState({
+            currentPage:number
+        })
+        // setTimeout(()=>{
+        //     this.setState({
+        //         currentPage:number
+        //     })
+        // },700)
+        
     }
 
     onSearchChange = (e) => {
@@ -210,7 +233,7 @@ class PhoneLabel extends Component {
     }
 
     render() {
-        const { isOpenModal, labelItem, title, isShowModalConfirm, params, isOpenDropdownSort, indexPagination, limit_labels } = this.state;
+        const { isOpenModal, labelItem, title, isShowModalConfirm, params, isOpenDropdownSort, indexPagination, limit_labels,currentPage } = this.state;
         const { data, user } = this.props;
         const { labelList, labelTotal } = data;
         const currentList = labelList ? labelList.length : 0;
@@ -218,7 +241,7 @@ class PhoneLabel extends Component {
             return <Redirect from="/" to="/" />
         }
         return (
-            <div>
+            <div className="phone-label">
                 <ModalConfirm
                     isShowModal={isShowModalConfirm}
                     clickOk={this.deleteLabel}
@@ -287,7 +310,7 @@ class PhoneLabel extends Component {
 
                             <thead>
                                 <tr>
-                                    <th>STT</th>
+                                    <th width="20%">STT</th>
                                     <th>Tên</th>
                                     <th>Chỉnh sửa / Xóa</th>
                                 </tr>
@@ -296,14 +319,15 @@ class PhoneLabel extends Component {
                                 {
                                     labelList && labelList.map((val, idx) =>
                                         <tr key={idx}>
+                                            {/* <td>{(currentPage-1)*5+idx+1}</td> */}
                                             <td>{++idx}</td>
                                             <td>{val.name}</td>
                                             <td width="20%">
                                                 <Button
-                                                    className="btn btn-primary fa fa-pencil"
+                                                    className="btn btn-primary fa fa-pencil btn-update-label"
                                                     onClick={() => this.showUpdateModal(val)} />
                                                 <Button
-                                                    className="btn btn-danger fa fa-trash"
+                                                    className="btn btn-danger fa fa-trash btn-delete-label"
                                                     onClick={() => this.showConfirmDelete(val._id)} />
                                             </td>
                                         </tr>

@@ -117,7 +117,7 @@ class Password extends Component {
                 </CardBody>
                 <CardFooter>
                     <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Xác nhận</Button>
-                    <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Hoàn tác</Button>
+                    {/* <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Hoàn tác</Button> */}
                 </CardFooter>
                 </Card>
             </Form>

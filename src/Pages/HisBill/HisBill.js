@@ -23,7 +23,7 @@ const HisBill = ({ match: { params }, ...otherProps }) => {
               <tr>
                 <th>STT</th>
                 <th>Sản phẩm</th>
-                <th>Tổng số lượng</th>
+                <th>Số lượng</th>
                 <th>Tổng tiền</th>
                 <th>Địa chỉ nhận hàng</th>
                 <th>Ngày đặt hàng</th>
@@ -48,7 +48,14 @@ const HisBill = ({ match: { params }, ...otherProps }) => {
                           })}
                         </ol>
                       </td>
-                      <td>{sumCount}</td>
+                      {/* <td>{sumCount}</td> */}
+                      <td>
+                        <ol>
+                          {ele.products.map((ele, index) => {
+                          return <li key={index}>{ele.count}</li>;
+                          })}
+                        </ol>
+                      </td>
                       <td>
                         <span
                           className="text-danger"
@@ -62,7 +69,14 @@ const HisBill = ({ match: { params }, ...otherProps }) => {
                       </td>
                       <td>{ele.address}</td>
                       <td>{new Date(ele.date).toLocaleString()}</td>
-                      <td>{ele.status ? "Đã duyệt" : "Chưa duyệt"}</td>
+                      {/* <td>{ele.status ? "Đã duyệt" : "Chưa duyệt"}</td> */}
+                      <td>
+                        <button
+                         className={ele.status ? "disable" : ""}
+                        >
+                        {ele.status ? "Đã duyệt" : "Chưa duyệt"}
+                    </button>
+                  </td>
                     </tr>
                   );
                 })}

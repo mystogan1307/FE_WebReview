@@ -20,16 +20,12 @@ export const navMember = {
 
 export const navAdmin = {
   items: [
-    // {
-    //   name: "Trang chủ",
-    //   url: "/",
-    //   icon: "cui-home",
-    // },
-    // {
-    //   name: "Điện thoại",
-    //   url: "/dien-thoai",
-    //   icon: "cui-phone",
-    // },
+
+    {
+      name: "Dashboard",
+      url: "/dashboard",
+      icon: "cui-info",
+    },
     {
       name: "Hãng điện thoại",
       url: "/nhan-hieu",

@@ -15,6 +15,7 @@ const User = React.lazy(() => import("./Pages/Users/User.page"));
 const Cart = React.lazy(() => import("./Pages/Cart/Cart"));
 const His = React.lazy(() => import("./Pages/HisBill/HisBill"));
 const BillSetting = React.lazy(() => import("./Pages/BillSetting/BillSetting"));
+const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
 
 const routes = [
   { path: "/", exact: true, name: "trangchu", component: Home },
@@ -36,6 +37,12 @@ const routes = [
     exact: true,
     name: "don-hang",
     component: BillSetting,
+  },
+  {
+    path: "/dashboard",
+    exact: true,
+    name: "dashboard",
+    component: Dashboard,
   },
   {
     path: "/dien-thoai/:id",

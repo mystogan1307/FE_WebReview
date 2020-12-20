@@ -101,10 +101,24 @@ const Cart = ({ match: { params }, user, ...otherProps }) => {
       phone: phoneNumber,
       address: address,
       email: email,
-    });
+    }).then(res=> {
+      console.log('ress',res);
+      if(res.data['checkNumber'] == false) {
+        if(res.data['number'] == 0) {
+          toast.error(`${res.data.name} đã hết hàng. Mời bạn xem thêm những sản phẩm khác!`);
+        } else {
+          toast.error(`${res.data.name} chỉ còn ${res.data.number} sản phẩm. Mời bạn xem thêm những sản phẩm khác!`);
+        }
+         
 
-    toast.success("Đặt hàng thành công.");
-    otherProps.history.push("/");
+      } else {
+        toast.success("Đặt hàng thành công.");
+        otherProps.history.push("/")
+      }
+    })
+
+    
+   // otherProps.history.push("/");
   };
 
   return (

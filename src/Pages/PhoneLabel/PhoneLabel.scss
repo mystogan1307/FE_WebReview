@@ -1,0 +1,18 @@
+.phone-label{
+    table{
+        thead{
+            th{
+                text-align: left;
+            }
+        }
+        tbody{
+            tr td{
+                text-align: left;
+                padding: 7px 10px 5px 10px;
+            }
+            .btn-update-label{
+                margin-right: 10px;
+            }
+        }
+    }
+}

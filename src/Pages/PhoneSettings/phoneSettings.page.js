@@ -106,6 +106,7 @@ class PhoneSettings extends Component {
       : phoneItem.review;
     phone.label = phoneItem.label;
     phone.price = phoneItem.price;
+    phone.number=phoneItem.number;
     phone.screen = {
       screenTechnology: phoneItem.screenTechnology
         ? phoneItem.screenTechnology.trim()
@@ -499,7 +500,7 @@ class PhoneSettings extends Component {
                     value={phoneItem.number || ""}
                     onChange={this.onHandleChange}
                     required
-                    min={1}
+                    min={0}
                   />
                 </Col>
                 <Col />

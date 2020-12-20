@@ -18,22 +18,13 @@ class Comment extends Component {
                         <span><FormattedDate value={comment.createdAt} /></span>
                     </div>
                     <div className="ml-auto">
-                        {/* <Score select={true} sizeScore={sizeScore}>{comment.score}</Score> */}
                         <Classify>{comment.analysis}</Classify>
                     </div>
                 </div>
                 <div>
                     {comment.content}
                 </div>
-                {/* <span className="thumbs-up">
-                    <i className="fa fa-thumbs-up fa-sm"></i>
-                    <span className="count">{comment.like}</span>
-                </span>
 
-                <span className="thumbs-down">
-                    <i className="fa fa-thumbs-down"></i>
-                    <span className="count">{comment.dislike}</span>
-                </span> */}
             </div>
         );
     }

@@ -28,6 +28,7 @@ import Chart from "../../components/common/chart";
 import { getCommentList } from "../../actions/comment.action";
 import { FormattedNumber } from "react-intl";
 import Axios from "axios";
+import "./phone.scss"
 
 class Phone extends Component {
   constructor(props) {
@@ -262,7 +263,7 @@ class Phone extends Component {
     let currentList = commentList ? commentList.length : 0;
     console.log(commentTotal, currentList, comment);
     return (
-      <div>
+      <div className="phone-page-detail">
         {phone && (
           <Modal
             isOpen={isOpenModal}
@@ -323,14 +324,25 @@ class Phone extends Component {
         <Row>
           <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0 ">
             <Row>
-              <Button
+              {/* <Button
                 color="secondary"
                 className="btn-pill"
                 onClick={this.addToCart}
                 style={{ margin: "auto" }}
               >
                 Thêm vào giỏ hàng{" "}
-              </Button>
+              </Button> */}
+            {this.props.user && this.props.user._id && this.props.user.role.index === 1 ? (
+              null
+          ) : 
+          <Button
+          color="secondary"
+          className="btn-pill"
+          onClick={this.addToCart}
+          style={{ margin: "auto" }}
+        >
+          Thêm vào giỏ hàng{" "}
+        </Button>}
             </Row>
           </Col>
 

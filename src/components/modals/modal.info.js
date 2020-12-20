@@ -2,6 +2,7 @@ import React, {useRef, useEffect} from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table,
   CardHeader
 } from 'reactstrap';
+import "./modalInfo.scss"
 
 function useOutsideAlerter(ref, toggle) {
   /**
@@ -31,7 +32,7 @@ function ModalInfo(props) {
     <Modal isOpen={isOpen}   >
       <ModalHeader>Thông số kỹ thuật chi tiết {name}</ModalHeader>
       <ModalBody>
-        <div >
+        <div className="modal-info">
           <CardHeader className="header-product-detail">Màn hình</CardHeader>
           <Table>
             <tbody>

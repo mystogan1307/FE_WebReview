@@ -62,20 +62,7 @@ class DefaultHeader extends Component {
             </NavItem>
           ) : null}
 
-          {/* {
-            user && user.role && user.role.index === 1 &&
-            <React.Fragment>
-              <NavItem className="px-3">
-                <NavLink to="/nhan-hieu" className="nav-link">Hãng điện thoại</NavLink>
-              </NavItem>
-              <NavItem className="px-3">
-                <NavLink to="/quanlydienthoai" className="nav-link">Quản lý điện thoại</NavLink>
-              </NavItem>
-              <NavItem className="px-3">
-                <NavLink to="/nguoi-dung" className="nav-link">Quản lý người dùng</NavLink>
-              </NavItem>
-            </React.Fragment>
-          } */}
+
         </Nav>
         <Nav className="ml-auto" navbar>
           {user && user._id && user.role.index === 0 ? (
@@ -84,20 +71,12 @@ class DefaultHeader extends Component {
                 Giỏ hàng
                 <i
                   style={{ marginLeft: "5px" }}
-                  class="fa fa-shopping-cart"
+                  className="fa fa-shopping-cart"
                 ></i>
               </Link>
             </NavItem>
           ) : null}
-          {/* <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link"><i className="icon-list"></i></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink to="#" className="nav-link"><i className="icon-location-pin"></i></NavLink>
-          </NavItem> */}
+
 
           {user && user.msg === "Token không hợp lệ" && (
             <div>

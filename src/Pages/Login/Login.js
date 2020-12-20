@@ -64,6 +64,7 @@ class Login extends Component {
                         <Input type="email" name="email" placeholder="Email" autoComplete="email" 
                           onChange={e => this.onChange(e)}
                           value={email}
+                          required
                         />
                       </InputGroup>
                       <InputGroup className="mb-4">
@@ -75,6 +76,7 @@ class Login extends Component {
                         <Input type="password" name="password" placeholder="Mật khẩu" autoComplete="current-password"
                            onChange={e => this.onChange(e)}
                            value={password}
+                           required
                         />
                       </InputGroup>
                       <Row>
@@ -92,7 +94,7 @@ class Login extends Component {
                   <CardBody className="text-center">
                     <div>
                       <h2>Đăng ký</h2>
-                      <p>Đăng ký tài khoản để tham gia đánh giá sản phẩm.</p>
+                      <p>Đăng ký tài khoản để mua hàng tham gia nhận xét sản phẩm.</p>
                       <Link to="/register">
                         <Button color="primary" className="mt-3" active tabIndex={-1}>Đăng ký ngay!</Button>
                       </Link>

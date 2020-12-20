@@ -1,0 +1,18 @@
+.dash-board {
+    padding-top: 30px;
+    .info {
+        .card-body {
+            border-color: rebeccapurple;
+        }
+        .card-text {
+            font-weight: 700;
+            font-size: 24px;
+            color: rebeccapurple
+        }
+    }
+    .chart {
+        width: 75%;
+        margin: 0 auto;
+    }
+    
+}

@@ -122,7 +122,7 @@ class Profile extends Component {
                                         </FormGroup>
                                         <FormGroup>
                                             <Label htmlFor="phone">Số điện thoại</Label>
-                                            <Input type="text" id="phone" name="phone" value={profile.phone ? profile.phone : ""} onChange={this.onChange} />
+                                            <Input type="text" id="phone" name="phone" pattern="[0]\d{9}" value={profile.phone ? profile.phone : ""} onChange={this.onChange} />
                                         </FormGroup>
                                         <FormGroup row>
                                             <Col md="3">
@@ -148,7 +148,7 @@ class Profile extends Component {
                             </CardBody>
                             <CardFooter>
                                 <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Thay đổi</Button>
-                                <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Hoàn tác</Button>
+                                {/* <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Hoàn tác</Button> */}
                             </CardFooter>
                         </Card>
                     </Form>
