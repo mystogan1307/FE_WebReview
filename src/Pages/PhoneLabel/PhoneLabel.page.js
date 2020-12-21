@@ -25,13 +25,13 @@ class PhoneLabel extends Component {
             isOpenDropdownSort: false,
             params: {
                 skip: 0,
-                limit: 5
+                limit: 8
             },
             labelItem: {
                 name: ""
             },
             indexPagination: 0,
-            limit_labels: 5,
+            limit_labels: 8,
             currentPage:1,
         }
     }
@@ -389,7 +389,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getLabelList: (params) => {
-            dispatch(getLabelList({...params, limit: 5}))
+            dispatch(getLabelList({...params, limit: 8}))
         }
     }
 }
